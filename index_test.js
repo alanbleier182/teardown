@@ -8,16 +8,17 @@ describe('appendFileSync', () => {
     const path = './message.txt';
     const str = 'Hello Node.js';
     
+    afterEach( () => {
+    // Teardown: delete path
+      fs.unlinkSync(path);
+    });
+    
     // Exercise: write to file
     fs.appendFileSync(path, str);
 
     // Verify: compare file contents to string
     const contents = fs.readFileSync(path);
     assert.ok(contents.toString() === str);
-
-    // Teardown: delete path
-    fs.unlinkSync(path);
-
   });
 });
 
